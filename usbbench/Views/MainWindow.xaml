@@ -1,0 +1,109 @@
+﻿<Window 
+        MinWidth="800" MinHeight="600" Width="800" Height="600" MaxWidth="1000" MaxHeight="600"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:usbBench.ViewModels;assembly=usbBench"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        CanResize="False"
+        x:Class="usbBench.Views.MainWindow"
+        Title="usbBench"
+        Background="AliceBlue">
+
+  <Window.Styles>
+    <Style Selector="TextBlock.h1">
+      <Setter Property="Margin" Value="10"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="FontSize" Value="28"></Setter>
+      <Setter Property="FontFamily" Value="Helvetica"></Setter>
+      <Setter Property="Width" Value="120"></Setter>
+      <Setter Property="Background" Value="AliceBlue"></Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.h3">
+      <Setter Property="Margin" Value="20"/>
+      <Setter Property="FontSize" Value="36"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="FontSize" Value="28"></Setter>
+      <Setter Property="FontFamily" Value="Helvetica"></Setter>
+      <Setter Property="Background" Value="AliceBlue"></Setter>
+
+    </Style>
+
+    <Style Selector="TextBox.h1">
+      <Setter Property="FontSize" Value="15"></Setter>
+      <Setter Property="FontFamily" Value="Helvetica"></Setter>
+      <Setter Property="Background" Value="LightYellow"></Setter>
+      
+
+    </Style>   
+      <Style Selector="Button.h1">
+      <Setter Property="FontSize" Value="15"></Setter>
+      <Setter Property="FontFamily" Value="Helvetica"></Setter>
+      <Setter Property="Background" Value="LightGray"></Setter>
+    </Style>
+
+  </Window.Styles>
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+  <StackPanel Orientation="Vertical" Spacing="4">
+    <TextBlock></TextBlock>
+    <TextBlock Classes="h3">USB FS Transfer Utility</TextBlock>
+    <TextBlock Classes="h2" Margin="20" FontFamily="Helvetica" FontSize="14">Enter device usb properties and connect</TextBlock>
+
+
+      <StackPanel Orientation="Horizontal"
+                 Margin="20,16,0,0"
+                 HorizontalAlignment="Left"
+                 Spacing="20">
+        <Border Background="LightBlue" CornerRadius="10" BorderThickness="1" BorderBrush="Black">
+          <StackPanel Margin="10,10,10,10" Orientation="Vertical" Spacing="8">
+          <TextBox Classes="h1"
+                   IsReadOnly="True"
+                   Cursor="No"
+                      Watermark="Status"
+                      UseFloatingWatermark="True"
+                      Text="{Binding ConnectedText}"
+                   Foreground="Red"
+                 />
+          <TextBox Classes="h1"
+                   Watermark="Dev. ID"
+                   UseFloatingWatermark="True"
+                   Text="0"/>
+          <TextBox
+                  Classes="h1"
+                   Watermark="PID"
+                   UseFloatingWatermark="True"
+                   Text="0x41"/>
+          <TextBox
+                  Classes="h1"
+                   Watermark="VID"
+                   UseFloatingWatermark="True"
+                   Text="0x41"/>
+          <Button Classes="h1" Command="{Binding Connect}">Connect</Button>
+          
+          <Button Classes="h1" Command="{Binding StopPrint}">Disconnect</Button>
+        </StackPanel>
+      </Border>
+
+      <StackPanel Orientation="Vertical" Margin="50,0" Spacing="8">
+        <TextBox Classes="h1" AcceptsReturn="True" TextWrapping="Wrap" Width="300" Height="300" 
+                 Text="Hello">
+        </TextBox>
+        <Button Classes="h1" Command="{Binding StartTransfer}">Transfer Data</Button>
+
+        <StackPanel Orientation="Horizontal">
+          <CheckBox>Loop</CheckBox>
+          <TextBlock Margin="10,14">Times: </TextBlock>
+          <TextBox Height="23" Width="50" >10</TextBox>
+        </StackPanel>
+      </StackPanel>
+
+  
+
+    </StackPanel>
+  </StackPanel>
+</Window>
